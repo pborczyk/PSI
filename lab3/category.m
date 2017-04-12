@@ -37,5 +37,30 @@ end
 line_x = -10:0.001:10;
 line_y = (-w(1) * line_x - wb)/ -w(2)* (-1);
 
-plot(Points(1,1:5),Points(2,1:5),'*',Points(1,6:10),Points(2,6:10),'.',line_x,line_y)
+plot(Points(1,1:length(PositivePoints)),Points(2,1:length(PositivePoints)),'r+' ...
+,Points(1,length(PositivePoints) + 1:length(Points)),Points(2,length(PositivePoints) + 1:length(Points)),'b*', ...
+line_x,line_y)
+
+title('Wyniki nauki')
+
+while true
+    x_to_check = input('Wpisz x: ');
+    y_to_check = input('Wpisz y: ');
+    
+    check_result = weight_function(w(1),w(2),wb,x_to_check, y_to_check);
+    
+    if check_result == 1
+        disp('Punkt pozytywny');
+    else
+        disp('Punkt negatywny');
+    end
+    
+    exit_question_result = input('Zakoñczyæ?[t/n]: ','s');
+    switch exit_question_result
+        case 't',
+           break;
+        case 'n',  
+    end
+end
+
 
