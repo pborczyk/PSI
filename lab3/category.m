@@ -9,9 +9,9 @@ NegativePoints = horzcat ([-6; -25], [-2; -10], [1; -10], [4; -16], [5; 9]);
 Points = horzcat (PositivePoints, NegativePoints);
 Teacher = horzcat (ones(1, 5), zeros(1, 5));
 
-w(1) = rand();
-w(2) = rand();
-wb = rand();
+w(1) = 0.5;
+w(2) = 0.7;
+wb = 0.3;
 
 is_completed = false;
 
