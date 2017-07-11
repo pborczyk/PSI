@@ -1,9 +1,9 @@
 clearvars
 fitness_function = @(x) 2*(x^2 + 1);
 
-population_size = 10;
+population_size = 20;
 crossing_probability = 0.65;
-mutation_probability = 0.25;
+mutation_probability = 0.1;
 
 population(1,1).genotype = [];
 population(1,1).fitness = [];
@@ -14,6 +14,16 @@ for i = 1 : population_size
 end
 
 number_of_turns = population_size;
+
+disp('\n initial population \n')
+
+avg = 0;
+for j = 1 : population_size
+    fprintf('%s - %d \n', population(1, j).genotype, bin2dec(population(1,j).genotype))
+    avg = avg + bin2dec(population(1,j).genotype);
+end
+fprintf('Œrednia to: %f', avg / population_size);
+
 
 for i = 1 : number_of_turns
     
@@ -28,14 +38,13 @@ for i = 1 : number_of_turns
         population(i, j).selection_probability = (population(i, j).fitness / fitness_sum) * 100;
     end
     
-    roulette_pointer = rand() * 100;
-    
-  
+
     for j = 1 : population_size
-        k = 1;
+        roulette_pointer = rand() * 100;
+        k = 0;
         while roulette_pointer > 0
-            roulette_pointer = roulette_pointer - population(i, k).selection_probability;
             k = k + 1;
+            roulette_pointer = roulette_pointer - population(i, k).selection_probability;
             if k ==  population_size + 1
                 k = 1;
             end
@@ -47,6 +56,11 @@ for i = 1 : number_of_turns
     population(i + 1, :) = mutate(population(i + 1, :), crossing_probability);
 end
 
+disp('\n result population')
+
+avg = 0;
 for j = 1 : population_size
-   disp(population(i + 1, j).genotype) 
+     fprintf('%s - %d \n', population(i + 1, j).genotype,bin2dec(population(i + 1,j).genotype)) 
+     avg = avg + bin2dec(population(i + 1,j).genotype);
 end
+fprintf('Œrednia to: %f \n', avg / population_size);
