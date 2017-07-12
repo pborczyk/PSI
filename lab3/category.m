@@ -4,6 +4,10 @@ clearvars
 % wb = wb + e
 weight_function = @(w1,w2,wb,x,y) signum([w1, w2] * [x; y] + 1 * wb);
 
+%another set of points
+%PositivePoints = horzcat ([-5; 1] ,[-6; -2], [0; -5], [3; -7], [4.5; 1.3]); 
+%NegativePoints = horzcat ([-18; -0.76], [-12; -12], [-19; -10.5], [-17; -10.5], [-10; -10]);
+
 PositivePoints = horzcat ([-8; 20] ,[-9; -10], [-6; -5], [2; 20], [4; 25]); 
 NegativePoints = horzcat ([-6; -25], [-2; -10], [1; -10], [4; -16], [5; 9]);
 Points = horzcat (PositivePoints, NegativePoints);
