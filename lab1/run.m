@@ -16,12 +16,15 @@ end
 state.nodes(1).path(1) = start_city;
 state.nodes(1).cost = 0;
 state.nodes_to_check_ptr = 1;
-
+state.done = [];
 state.nodes_to_check = state.nodes; %is a fokin stack
 
-while size(state.nodes_to_check_ptr == 0)
-     new_nodes = offspring(pop_node(state), cities);
+while state.nodes_to_check_ptr ~= 0
+     [node, state] = pop_node(state);
+     new_nodes = offspring(node, cities);
      if size(new_nodes(1).path) ~= number_of_cities
-        push_node(new_nodes, state);
+        state = push_node(new_nodes, state);
+     else
+         state.done = [state.done, new_nodes];
      end
  end
