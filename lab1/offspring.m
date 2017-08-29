@@ -1,37 +1,22 @@
-function [ result ] = offspring( current_node, cities )
+function [] = offspring( current_node, cities )
 
-number_of_cities = size(cities,1);
-working_cities = [cities, zeros(number_of_cities,1)];
+cost_fun =@(city1,city2) sqrt((city1.x - city2.x).^2 + (city1.y - city2.y).^2);
 
-for i = 1 : number_of_cities
-    for path_iterator = 1 : size(current_node.path,1)
-        if working_cities(i,1) == current_node.path(path_iterator)
-            working_cities(i,4) = 1;
-        end
-    end
+visited_cities = current_node.path;
+
+for i=1:size(cities,2)
+    all_cities(i) = cities(i).number;
 end
 
-unvisited_cities_iterator = 1;
-for i = 1 : number_of_cities
-   if working_cities(i,4) == 0
-      unvisited_cities(unvisited_cities_iterator) = working_cities(i,1);
-      unvisited_cities_iterator = unvisited_cities_iterator + 1;
-   end
-end
+unvisited_cities = setdiff(all_cities, visited_cities);
 
-
-j=1;
-for i = 1 : number_of_cities
-    if working_cities(i,4) == 0
-       current_path_size = size(current_node.path,1);
-       result(j) = current_node;
-       result(j).path(current_path_size) = unvisited_cities(j);
-       if current_path_size > 1
-            result(j).cost = result(j).cost + get_cost(cities(result(j).path(current_path_size),1) ,cities(result(j).path(current_path_size + 1),1));
-       end
-       j=j+1;
-    end
-end
-
+for i=1:size(unvisited_cities, 1)
+    child.path = [current_node.path, unvisited_cities(i)];
+    
+    city_before = cities(child.path(end-1));
+    current_city = cities(child.path(end));
+    child.cost = child.cost + cost_fun(city_before, current_city);
+    push_node(child);
+   
 end
 
