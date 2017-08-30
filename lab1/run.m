@@ -22,7 +22,7 @@ state.nodes_to_check = state.nodes; %is a fokin stack
 while state.nodes_to_check_ptr ~= 0
      [node, state] = pop_node(state);
      new_nodes = offspring(node, cities);
-     if size(new_nodes(1).path) ~= number_of_cities
+     if size(new_nodes(1).path) ~= number_of_cities + 1
         state = push_node(new_nodes, state);
      else
          state.done = [state.done, new_nodes];
