@@ -36,5 +36,3 @@ while state.nodes_to_check_ptr ~= 0
          state.done = [state.done, new_nodes];
      end
 end
- 
-state.done = sort_nodes(state.done, 'c');
