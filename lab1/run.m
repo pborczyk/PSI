@@ -26,6 +26,13 @@ while state.nodes_to_check_ptr ~= 0
      if size(new_nodes(1).path) ~= number_of_cities + 1
         state = push_node(new_nodes, state);
      else
+         if size(state.done) == 0
+            best = new_nodes; 
+         else
+             if new_nodes.cost < best.cost
+                 best = new_nodes;
+             end
+         end
          state.done = [state.done, new_nodes];
      end
 end
