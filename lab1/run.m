@@ -15,6 +15,7 @@ end
 %preparing initial state
 state.nodes(1).path(1) = start_city;
 state.nodes(1).cost = 0;
+state.nodes(1).heuristic = 0;
 state.nodes_to_check_ptr = 1;
 state.done = [];
 state.nodes_to_check = state.nodes; %is a fokin stack
@@ -27,4 +28,6 @@ while state.nodes_to_check_ptr ~= 0
      else
          state.done = [state.done, new_nodes];
      end
- end
+end
+ 
+state.done = sort_nodes(state.done, 'c');

@@ -17,6 +17,7 @@ for i=1:size(unvisited_cities, 2)
     city_before = cities(children(i).path(end-1));
     current_city = cities(children(i).path(end));
     children(i).cost = current_node.cost + cost_fun(city_before, current_city);
+    children(i).heuristic = 0;
    
 end
 
