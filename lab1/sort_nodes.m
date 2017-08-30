@@ -15,7 +15,7 @@ while n > 0
    j = 0;
     for i = 2:n
         
-        if compare_fun(unsorted(i)) < compare_fun(unsorted(i - 1))
+        if compare_fun(unsorted(i)) > compare_fun(unsorted(i - 1))
             temp = x(i);
             unsorted(i) = x(i - 1);
             unsorted(i - 1) = temp;
