@@ -1,4 +1,4 @@
-function [ children ] = offspring( current_node, cities )
+function [ children ] = offspring_naive( current_node, cities )
 
 cost_fun =@(city1,city2) sqrt((city1.x - city2.x).^2 + (city1.y - city2.y).^2);
 

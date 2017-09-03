@@ -2,6 +2,7 @@
 number_of_cities = 4;
 start_city = 1;
 dest_city = 4;
+offspring =@(current_node, cities) offspring_greedy(current_node, cities);
 
 %consts
 boundry = 10;
