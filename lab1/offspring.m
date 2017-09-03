@@ -8,7 +8,8 @@ for i=1:size(cities,2)
     all_cities(i) = cities(i).number;
 end
 
-if size(current_node.path) ~= size(cities,2)
+
+if size(current_node.path) < size(cities,2)
 unvisited_cities = setdiff(all_cities, visited_cities);
 
 for i=1:size(unvisited_cities, 2)
@@ -27,5 +28,5 @@ else
     city_before = cities(current_node.path(end - 1));
     current_city = cities(end);
     current_node.cost = current_node.cost + cost_fun(city_before, current_city);
-    children = [current_node];
+    children = current_node;
 end
