@@ -1,8 +1,9 @@
+clc
 clearvars
 fitness_function = @(x) 2*(x^2 + 1);
 
-population_size = 20;
-crossing_probability = 0.65;
+population_size = 5;
+crossing_probability = 0.9;
 mutation_probability = 0.1;
 
 population(1,1).genotype = [];
@@ -44,16 +45,26 @@ for i = 1 : number_of_turns
         k = 0;
         while roulette_pointer > 0
             k = k + 1;
-            roulette_pointer = roulette_pointer - population(i, k).selection_probability;
-            if k ==  population_size + 1
+               if k ==  population_size + 1
                 k = 1;
             end
+            roulette_pointer = roulette_pointer - population(i, k).selection_probability;
         end
         population(i + 1, j) = population(i, k); 
     end
     
     population(i + 1, :) = make_love(population(i + 1, :), crossing_probability);
-    population(i + 1, :) = mutate(population(i + 1, :), crossing_probability);
+    population(i + 1, :) = mutate(population(i + 1, :), mutation_probability);
+    
+    fprintf('population # %d \n', i) 
+
+    avg = 0;
+    for j = 1 : population_size
+        fprintf('%s - %d \n', population(i + 1, j).genotype,bin2dec(population(i + 1,j).genotype)) 
+        avg = avg + bin2dec(population(i + 1,j).genotype);
+    end
+    fprintf('Œrednia to: %f \n', avg / population_size);
+    
 end
 
 disp('\n result population')
