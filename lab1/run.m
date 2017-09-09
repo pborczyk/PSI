@@ -1,8 +1,8 @@
 %config
-number_of_cities = 4;
+number_of_cities = 8;
 start_city = 1;
 dest_city = 4;
-offspring =@(current_node, cities) offspring_greedy(current_node, cities);
+offspring =@(current_node, cities) offspring_naive(current_node, cities);
 
 %consts
 boundry = 10;

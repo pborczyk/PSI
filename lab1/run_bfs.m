@@ -1,10 +1,11 @@
 %config
-number_of_cities = 4;
+number_of_cities = 9;
 start_city = 1;
 dest_city = 4;
 
 %consts
 boundry = 10;
+offspring =@(current_node, cities) offspring_naive(current_node, cities);
 
 for i = 1: number_of_cities
     cities(i).number = i;
