@@ -5,11 +5,11 @@ clearvars
 weight_function = @(w1,w2,wb,x,y) signum([w1, w2] * [x; y] + 1 * wb);
 
 %another set of points
-%PositivePoints = horzcat ([-5; 1] ,[-6; -2], [0; -5], [3; -7], [4.5; 1.3]); 
-%NegativePoints = horzcat ([-18; -0.76], [-12; -12], [-19; -10.5], [-17; -10.5], [-10; -10]);
+PositivePoints = horzcat ([-5; 1] ,[-6; -2], [0; -5], [3; -7], [4.5; 1.3]); 
+NegativePoints = horzcat ([-18; -0.76], [-12; -12], [-19; -10.5], [-17; -10.5], [-10; -10]);
 
-PositivePoints = horzcat ([-8; 20] ,[-9; -10], [-6; -5], [2; 20], [4; 25]); 
-NegativePoints = horzcat ([-6; -25], [-2; -10], [1; -10], [4; -16], [5; 9]);
+%PositivePoints = horzcat ([-8; 20] ,[-9; -10], [-6; -5], [2; 20], [4; 25]); 
+%NegativePoints = horzcat ([-6; -25], [-2; -10], [1; -10], [4; -16], [5; 9]);
 Points = horzcat (PositivePoints, NegativePoints);
 Teacher = horzcat (ones(1, 5), zeros(1, 5));
 
@@ -38,12 +38,14 @@ end
 
 
 % wzór na prost¹ do sprawdzenia
-line_x = -10:0.001:10;
+line_x = -20:0.001:10;
 line_y = (-w(1) * line_x - wb)/ -w(2)* (-1);
 
 plot(Points(1,1:length(PositivePoints)),Points(2,1:length(PositivePoints)),'r+' ...
 ,Points(1,length(PositivePoints) + 1:length(Points)),Points(2,length(PositivePoints) + 1:length(Points)),'b*', ...
 line_x,line_y)
+
+legend('Punkty dodatnie','Punkty ujemne','Prosta klasyfikuj¹ca')
 
 title('Wyniki nauki')
 
