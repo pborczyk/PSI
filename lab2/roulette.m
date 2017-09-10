@@ -2,9 +2,9 @@ clc
 clearvars
 fitness_function = @(x) 2*(x^2 + 1);
 
-population_size = 5;
-crossing_probability = 0.9;
-mutation_probability = 0.1;
+population_size = 25;
+crossing_probability = 1;
+mutation_probability = 0.01;
 
 population(1,1).genotype = [];
 population(1,1).fitness = [];
@@ -14,7 +14,7 @@ for i = 1 : population_size
     population(1,i).genotype = dec2bin(rand() * 127, 7);
 end
 
-number_of_turns = population_size;
+number_of_turns = 20;
 
 disp('\n initial population \n')
 
@@ -64,14 +64,9 @@ for i = 1 : number_of_turns
         avg = avg + bin2dec(population(i + 1,j).genotype);
     end
     fprintf('Œrednia to: %f \n', avg / population_size);
-    
 end
 
-disp('\n result population')
-
-avg = 0;
-for j = 1 : population_size
-     fprintf('%s - %d \n', population(i + 1, j).genotype,bin2dec(population(i + 1,j).genotype)) 
-     avg = avg + bin2dec(population(i + 1,j).genotype);
-end
-fprintf('Œrednia to: %f \n', avg / population_size);
+ for i = 1 : population_size
+        result_array(i) = bin2dec(population(number_of_turns + 1, i).genotype);
+ end
+ fprintf('Najlepszy chromosom to: %f \n', max(result_array));
