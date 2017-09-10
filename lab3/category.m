@@ -1,4 +1,5 @@
 clearvars
+clc
 % e = y - T(n)
 % delta w = e * [x1 x2]
 % wb = wb + e

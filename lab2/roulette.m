@@ -3,8 +3,8 @@ clearvars
 fitness_function = @(x) 2*(x^2 + 1);
 
 population_size = 25;
-crossing_probability = 1;
-mutation_probability = 0.01;
+crossing_probability = 0.85;
+mutation_probability = 0.05;
 
 population(1,1).genotype = [];
 population(1,1).fitness = [];
@@ -14,7 +14,7 @@ for i = 1 : population_size
     population(1,i).genotype = dec2bin(rand() * 127, 7);
 end
 
-number_of_turns = 20;
+number_of_turns = 10;
 
 disp('\n initial population \n')
 
